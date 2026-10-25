@@ -31,14 +31,15 @@ export function WhatsappButton({
     <a
       href={getWhatsappUrl()}
       onClick={() => {
-if (typeof (window as Window & { gtag?: (...args: unknown[]) => void }).gtag === "function") {
-   (window as Window & { gtag: (...args: unknown[]) => void }).gtag(
-      send_to: "AW-16919657566/OZRhCNjQgJYdEN749YM",
-      value: 1.0,
-      currency: "BRL",
-    });
-  }
-}}
+        const { gtag } = window as Window & { gtag?: (...args: unknown[]) => void };
+        if (typeof gtag === "function") {
+          gtag("event", "conversion", {
+            send_to: "AW-16919657566/OZRhCNjQgJYdEN749YM",
+            value: 1.0,
+            currency: "BRL",
+          });
+        }
+      }}
       target="_blank"
       rel="noopener noreferrer"
       data-cta="whatsapp"
