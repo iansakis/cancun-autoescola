@@ -15,6 +15,6 @@ export const ADDRESS_LINES = [
 
 export const SITE_URL = "https://cancunautoescola.com.br";
 
-export function getWhatsappUrl() {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+export function getWhatsappUrl(message: string = WHATSAPP_MESSAGE) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
