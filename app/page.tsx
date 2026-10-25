@@ -33,7 +33,6 @@ export default function Home() {
         imageSrc="/images/logo/WhatsApp%20Image%202026-10-24%20at%2023.12.00.jpeg"
         imageAlt="Promoção de Halloween da Auto Escola Cancun"
         href={getWhatsappUrl(HALLOWEEN_MESSAGE)}
-        storageKey="cancun-promo-halloween-fechado"
         // 01/11/2026 00:00 no horário de Brasília (UTC-3)
         endsAt="2026-11-01T00:00:00-03:00"
       />

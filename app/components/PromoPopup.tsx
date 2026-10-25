@@ -8,8 +8,11 @@ type PromoPopupProps = {
   imageAlt: string;
   /** Link aberto ao clicar na imagem */
   href: string;
-  /** Chave usada no localStorage para lembrar que o visitante fechou */
-  storageKey: string;
+  /**
+   * Chave do localStorage para lembrar que o visitante fechou e ocultar por
+   * `hideForHours`. Sem ela, o pop-up aparece a cada carregamento da página.
+   */
+  storageKey?: string;
   /** Tempo até abrir, em milissegundos */
   delayMs?: number;
   /** Por quanto tempo não exibir de novo após fechar, em horas */
@@ -22,7 +25,8 @@ function hasEnded(endsAt?: string) {
   return endsAt ? Date.now() >= new Date(endsAt).getTime() : false;
 }
 
-function wasDismissedRecently(storageKey: string, hideForHours: number) {
+function wasDismissedRecently(storageKey: string | undefined, hideForHours: number) {
+  if (!storageKey) return false;
   try {
     const saved = window.localStorage.getItem(storageKey);
     if (!saved) return false;
@@ -33,7 +37,8 @@ function wasDismissedRecently(storageKey: string, hideForHours: number) {
   }
 }
 
-function saveDismissal(storageKey: string) {
+function saveDismissal(storageKey: string | undefined) {
+  if (!storageKey) return;
   try {
     window.localStorage.setItem(storageKey, String(Date.now()));
   } catch {
